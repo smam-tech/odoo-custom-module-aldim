@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="aldim_qris_view_order_form" model="ir.ui.view">
-        <field name="name">aldim.ext.sales</field>
+    <record id="aldim_qris_view_order_form_invoice_detail" model="ir.ui.view">
+        <field name="name">aldim.qris.view_order_form_invoice_detail</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
@@ -10,6 +10,19 @@
             <field name="api_status_paid" string="Paid Status"/>
             <field name="api_status_paid_by_customer" string="Paid by Costumer"/>
             <field name="api_status_paid_by_platform" string="Paid by Platform"/>
+            </xpath>
+        </field>
+    </record>
+
+    
+    <record id="aldim_qris_view_order_form_button_create_invoice" model="ir.ui.view">
+        <field name="name">aldim.qris.view_order_form_button_create_invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='authorized_transaction_ids']" position="after">
+            <button name="qris_create_invoice" type="object"
+                    string="Create QRIS Invoice" class="oe_highlight"/>
             </xpath>
         </field>
     </record>

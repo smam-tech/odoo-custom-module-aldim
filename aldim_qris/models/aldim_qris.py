@@ -1,6 +1,7 @@
 from odoo import fields,models,api
 # import json
 import requests
+import qrcode
 
 class aldim_qris_model(models.Model):
     _inherit='sale.order'
@@ -77,9 +78,9 @@ class aldim_qris_model(models.Model):
             self.api_invoice_id=res['qris_invoiceid']
             self.api_invoice_request_date=res['qris_request_date']
             self.api_nmid=res['qris_nmid']
+            self.image_image = qrcode.make(self.image_string)
         elif res['status']=='failed':
-            res = res['data']
-            self.api_invoice_id=res['qris_status']
+            self.api_invoice_id=str(res['data'])
 
     def qris_api_get_check_invoice(passparams):
         url = " https://qris.id/restapi/qris/checkpaid_qris.php"
