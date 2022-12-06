@@ -6,7 +6,10 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_term_id']" position="after">
-            <field name="end_user" string="End User"/>
+            <field name="api_invoice_id" string="Invoice ID"/>
+            <field name="api_status_paid" string="Paid Status"/>
+            <field name="api_status_paid_by_customer" string="Paid by Costumer"/>
+            <field name="api_status_paid_by_platform" string="Paid by Platform"/>
             </xpath>
         </field>
     </record>

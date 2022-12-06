@@ -79,7 +79,7 @@ class aldim_qris_model(models.Model):
             self.api_nmid=res['qris_nmid']
         elif res['status']=='failed':
             res = res['data']
-            self.api_status_paid=res['qris_status']
+            self.api_invoice_id=res['qris_status']
 
     def qris_api_get_check_invoice(passparams):
         url = " https://qris.id/restapi/qris/checkpaid_qris.php"
