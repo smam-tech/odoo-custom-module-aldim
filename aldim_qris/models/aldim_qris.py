@@ -69,7 +69,7 @@ class aldim_qris_model(models.Model):
             'apikey': self.company_id.qris_api_key,
             'mID':self.company_id.qris_mid,
             'cliTrxNumber':self.name,
-            # 'cliTrxAmount':
+            'cliTrxAmount':self.amount_total
         }
         res = aldim_qris_model.qris_api_get_create_invoice(passparamsvar)
         if res['status']=='success':
@@ -95,7 +95,7 @@ class aldim_qris_model(models.Model):
             'apikey': self.company_id.qris_api_key,
             'mID':self.company_id.qris_mid,
             'invid':self.api_invoice_id,
-            # 'trxvalue':,
+            'trxvalue':self.amount_total,
             'trxdate':self.api_invoice_request_date[:10]
         }
         res = aldim_qris_model.qris_api_get_check_invoice(passparamsvar)
