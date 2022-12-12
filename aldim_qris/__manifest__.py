@@ -2,7 +2,7 @@
     'name' : 'QRIS payment',
     'version': '1.0',
     'category': 'API/QRIS',
-    'depends': ['base','sale'],
+    'depends': ['base','sale','aldim_api_history'],
     'description': """
 Modul QRIS payment.
 ===============================================

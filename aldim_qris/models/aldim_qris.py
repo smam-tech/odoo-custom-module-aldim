@@ -1,7 +1,8 @@
-from odoo import fields,models,api
+from odoo import fields,models
 # import json
 import requests
 import qrcode
+import time
 
 class aldim_qris_model(models.Model):
     _inherit='sale.order'
@@ -57,10 +58,18 @@ class aldim_qris_model(models.Model):
         help='Request date sejak permintaan invoice dikirimkan ke QRIS'
     )
 
-    def qris_api_get_create_invoice(passparams):
+    def qris_api_get_create_invoice(self,passparams):
         url = " https://qris.id/restapi/qris/show_qris.php"
         response = requests.get(url, params=passparams)
         res = response.json()
+        vals = {
+            'api_provider' : 'QRIS',
+            'api_prodivder_link' : url,
+            'date' : lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+            'params' : passparams,
+            'response' : res    
+        }
+        self.env['aldim.api.history'].create(vals)
         return res
 
     def qris_create_invoice(self):
@@ -71,7 +80,7 @@ class aldim_qris_model(models.Model):
             'cliTrxNumber':self.name,
             'cliTrxAmount':self.amount_total
         }
-        res = aldim_qris_model.qris_api_get_create_invoice(passparamsvar)
+        res = aldim_qris_model.qris_api_get_create_invoice(self,passparamsvar)
         if res['status']=='success':
             res = res['data']
             self.image_string=res['qris_content']
@@ -82,10 +91,18 @@ class aldim_qris_model(models.Model):
         elif res['status']=='failed':
             self.api_invoice_id=str(res['data'])
 
-    def qris_api_get_check_invoice(passparams):
+    def qris_api_get_check_invoice(self,passparams):
         url = " https://qris.id/restapi/qris/checkpaid_qris.php"
         response = requests.get(url, params=passparams)
         res = response.json()
+        vals = {
+            'api_provider' : 'QRIS',
+            'api_prodivder_link' : url,
+            'date' : lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+            'params' : passparams,
+            'response' : res    
+        }
+        self.env['aldim.api.history'].create(vals)
         return res
 
     # @api.depends('company_id')
@@ -98,7 +115,7 @@ class aldim_qris_model(models.Model):
             'trxvalue':self.amount_total,
             'trxdate':self.api_invoice_request_date[:10]
         }
-        res = aldim_qris_model.qris_api_get_check_invoice(passparamsvar)
+        res = aldim_qris_model.qris_api_get_check_invoice(self,passparamsvar)
         if res['status']=='success':
             res = res['data']
             self.api_status_paid=res['qris_status']
