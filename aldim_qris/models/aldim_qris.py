@@ -65,9 +65,8 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
-            'date' : lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-            'params' : passparams,
-            'response' : res    
+            'params' : str(passparams),
+            'response' : str(res)    
         }
         self.env['aldim.api.history'].create(vals)
         return res
@@ -98,9 +97,8 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
-            'date' : lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
-            'params' : passparams,
-            'response' : res    
+            'params' : str(passparams),
+            'response' : str(res)    
         }
         self.env['aldim.api.history'].create(vals)
         return res

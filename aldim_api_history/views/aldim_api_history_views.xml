@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>   
     <!-- Configuration/Lead & Opportunities/Lost Reasons Menu -->
-    <record id="aldim_first_views" model="ir.actions.act_window">
+    <record id="aldim_api_history_views" model="ir.actions.act_window">
         <field name="name">API History</field>
         <field name="res_model">aldim.api.history</field>
         <field name="view_mode">tree,form</field>
@@ -13,10 +13,10 @@
           </p>
         </field>
     </record>
-<!--     
-    <menuitem id="aldim_first_views_menu"
-            name="Universitas"
+    
+    <menuitem id="aldim_api_history"
+            name="API History"
             parent="sale.sale_order_menu"
-            action="aldim_first_views"
-            sequence="3"/> -->
+            action="aldim_api_history_views"
+            sequence="3"/>
 </odoo>

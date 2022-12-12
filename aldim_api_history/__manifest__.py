@@ -3,7 +3,7 @@
     'version': '0.1',
     'category': 'API/API',
     'summary': 'Modul to document every API History',
-    'depends': ['base'],
+    'depends': ['base','sale'],
     'description': """
 Modul Custom AldiM.
 ===============================================
@@ -12,7 +12,7 @@ Modul to document every API History, so tracking problem will be easier
     """,
     'data': [
         'security/ir.model.access.csv',
-        'views/aldim_first_views.xml',
+        'views/aldim_api_history_views.xml',
     ],
     'installable': True,
     'auto_install': False,

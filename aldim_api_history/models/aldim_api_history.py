@@ -1,4 +1,6 @@
 from odoo import fields,models
+from datetime import datetime
+import time
 
 class aldim_api_history(models.Model):
     _name = "aldim.api.history"
@@ -16,10 +18,11 @@ class aldim_api_history(models.Model):
         help='Link Provider API yang mengirimkan Response'
     )
 
-    date = fields.datetime(
+    date_api = fields.Datetime(
         string='Tanggal',
         readonly='True',
-        help='Tanggal Penerimaan Response'
+        help='Tanggal Penerimaan Response',
+        default= fields.Datetime.now
     )
 
     params = fields.Text(
