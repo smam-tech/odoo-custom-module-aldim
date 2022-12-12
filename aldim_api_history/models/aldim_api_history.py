@@ -1,6 +1,6 @@
 from odoo import fields,models
 
-class aldim_api_history_model(models.Model):
+class aldim_api_history(models.Model):
     _name = "aldim.api.history"
     _description = "API History Model"
 
