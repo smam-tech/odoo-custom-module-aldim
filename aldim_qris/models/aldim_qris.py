@@ -1,12 +1,12 @@
 from odoo import fields,models
-# import json
+import json
 import requests
 import qrcode
 import time
 
 class aldim_qris_model(models.Model):
     _inherit='sale.order'
-    _description="API Training"
+    _description="Integration with QRIS"
 
     image_image = fields.Image(
         string='Gambar',
@@ -65,6 +65,7 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
+            'api method' : 'get',
             'params' : str(passparams),
             'response' : str(res)    
         }
@@ -97,6 +98,7 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
+            'api method' : 'get',
             'params' : str(passparams),
             'response' : str(res)    
         }

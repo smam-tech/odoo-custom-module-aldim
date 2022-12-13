@@ -25,8 +25,14 @@ class aldim_api_history(models.Model):
         default= fields.Datetime.now
     )
 
+    api_method = fields.Char(
+        string='Method',
+        readonly='True',
+        help='Method to call the API'
+    )
+
     params = fields.Text(
-        string='Response',
+        string='Parameter',
         readonly='True',
         help='API Response in JSON Format'
     )
