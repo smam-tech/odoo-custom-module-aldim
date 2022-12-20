@@ -25,6 +25,7 @@ class aldim_jubelio_company_ext_api_model(models.Model):
     time_token_jubelio = fields.Datetime(
         string='Last Token Time Jubelio',
         readonly='True',
+        default= fields.Datetime.now,
         help='Waktu terakhir kali dilakukan request token untuk jubelio'
     )
 
@@ -48,6 +49,11 @@ class aldim_jubelio_company_ext_api_model(models.Model):
             'password' : self.password_jubelio
         }
         res = aldim_jubelio_company_ext_api_model.jubelio_api_post_token_account(self,passparamsvar)
-        if res['statusCode']!= 200 :
-            self.time_token_jubelio = fields.Datetime.now
-            self.token_jubelio = 'Please check API History with filter time as above, method = post, and link https://api.jubelio.com/login'
+        if 'statusCode' in res.keys() :
+            if res['statusCode']!= 200 :
+                self.time_token_jubelio = fields.Datetime.now
+                self.token_jubelio = 'Please check API History with filter time as above, method = post, and link https://api.jubelio.com/login'
+                return
+        self.token_jubelio = res['token']
+        self.time_token_jubelio = fields.Datetime.now
+        
