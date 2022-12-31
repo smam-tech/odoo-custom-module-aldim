@@ -1,17 +1,17 @@
 {
-    'name' : 'Jubelio Omnichannel',
-    'version': '1.0',
+    'name' : 'Hitoko Omnichannel',
+    'version': '0.1',
     'category': 'API/QRIS',
     'depends': ['base','product','aldim_api_history'],
     'description': """
-Modul Jubelio Omnichannel.
+Modul Hitoko Omnichannel.
 ===============================================
 
-Modul Jubelio Omnichannel that integrate odoo data with Jubelio data.
+Modul Hitoko Omnichannel that integrate odoo data with Jubelio data.
     """,
     'data': [
-        'views/aldim_qris_view.xml',
-        'views/aldim_company_ext_api_view.xml'
+        'views/aldim_hitoko_company_ext_api.xml',
+        'views/aldim_hitoko_product_category.xml'
     ],
     'installable': True,
     'auto_install': False,

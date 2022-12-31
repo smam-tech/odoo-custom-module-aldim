@@ -1,4 +1,5 @@
 from odoo import fields,models
+import requests
 
 class aldim_hitoko_product_template_model(models.Model):
     _inherit='product.template'
@@ -45,7 +46,7 @@ class aldim_hitoko_product_template_model(models.Model):
         vals = {
             'api_provider' : 'Hitoko',
             'api_prodivder_link' : url,
-            'api method' : 'get',
+            'api_method' : 'get',
             'params' : 'Params Sent: \n'+str(passparams)+'\n Params Source : \n'+str(reqparams),
             'response' : str(res)   
         }

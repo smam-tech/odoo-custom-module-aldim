@@ -36,7 +36,7 @@ class aldim_jubelio_company_ext_api_model(models.Model):
         vals = {
             'api_provider' : 'Jubelio',
             'api_prodivder_link' : url,
-            'api method' : 'post',
+            'api_method' : 'post',
             'params' : str(passparams),
             'response' : str(res)    
         }

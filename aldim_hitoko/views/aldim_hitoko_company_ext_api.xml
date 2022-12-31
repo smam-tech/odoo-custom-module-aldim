@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="aldim_hitoko_company_ext_api_view_form" model="ir.ui.view">
+        <field name="name">aldim.hitoko.company.ext.api.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+            <field name="client_id_hitoko"/>
+            <field name="client_secret_hitoko"/>
+            <field name="expire_token_hitoko"/>
+            <button name="hitoko_retrieve_token" type="object"
+                    string="Retrieve Token" class="oe_highlight"/>
+            <button name="hitoko_refresh_token" type="object"
+                    string="Refresh Token" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

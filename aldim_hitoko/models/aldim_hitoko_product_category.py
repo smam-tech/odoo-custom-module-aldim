@@ -52,15 +52,54 @@ class aldim_hitoko_product_category_model(models.Model):
     def do_sync_product_category_odoo_hitoko(self,res): #Self is self, res is API response
         if res['message'] == 'request success':
             list_cat_hitoko = res['data']
-            pick_category = self.env['product.category'].search([('sync_hitoko','=',True)])
-            for cat in pick_category :
-                for one_cat_hitoko in list_cat_hitoko:
-                    if cat.complete_name in one_cat_hitoko['category_name']:
+            pick_category = self.search([('sync_hitoko','=',True)])
+            cat_odoo_missing = []
+            for one_cat_hitoko in list_cat_hitoko:
+                cat_odoo_missing.append(one_cat_hitoko)
+                for cat in pick_category :
+            # for cat in pick_category :
+                # for one_cat_hitoko in list_cat_hitoko:
+                    if cat.complete_name == one_cat_hitoko['category_name']:
                         cat.category_id_hitoko = one_cat_hitoko['category_id']
                         cat.parent_id_hitoko = one_cat_hitoko['parent_id']
-
-        aldim_hitoko_product_category_model.do_fill_all_parent_product_category_hitoko(self, pick_category)
+                        cat_odoo_missing.pop()
+                        continue
+        aldim_hitoko_product_category_model.do_fill_missing_category_odoo_hitoko(self,cat_odoo_missing)
+        sync_odoo_category = self.search([('sync_hitoko','=',True)])
+        aldim_hitoko_product_category_model.do_fill_all_parent_product_category_hitoko(self, sync_odoo_category)
         return "Done"
+
+        ##PROBLEM CHILD_ID (many2one), PARENT_PATH (Char)
+    def do_fill_missing_category_odoo_hitoko(self,missing_category):
+        for cat in missing_category:
+            vals = {
+                'name' : cat['category_name'],
+                'category_id_hitoko':cat['category_id'],
+                'parent_id_hitoko':cat['parent_id']
+            }
+            self.create(vals)
+
+        for cat in missing_category:
+            selected_cat = self.search([
+                ('name','=',cat['category_name']),'&',
+                ('category_id_hitoko','=',cat['category_id']),'&',
+                ('parent_id_hitoko','=',cat['parent_id'])],
+                limit=1
+                )
+            parent_cat = self.search([
+                ('category_id_hitoko','=',cat['parent_id'])],
+                limit=1
+                )
+            child_cat = self.search({
+                ('parent_id_hitoko','=',cat['category_id'])}
+                )
+            vals = {
+                'parent_id':parent_cat,
+                'child_id':child_cat
+            }
+
+            selected_cat.write(vals)
+            
 
 
 ## PROBLEM SEARCH WRITE
@@ -70,7 +109,7 @@ class aldim_hitoko_product_category_model(models.Model):
             count = 1
             while highest_parent != 0 or count < 5 :
                 count = count + 1
-                same = self.env['product.category'].search([('sync_hitoko','=',True)], limit=1, order='id desc')
+                same = self.search([('sync_hitoko','=',True)], limit=1, order='id desc')
                 if same:
                     column_filled = 'parent'+str(count)+'_id_hitoko'
                     highest_parent = same.parent_id_hitoko
@@ -100,7 +139,7 @@ class aldim_hitoko_product_category_model(models.Model):
         vals = {
             'api_provider' : 'Hitoko',
             'api_prodivder_link' : url,
-            'api method' : 'get',
+            'api_method' : 'get',
             'params' : 'Params Sent: \n'+str(passparams)+'\n Params Source : \n'+str(reqparams),
             'response' : str(res)   
         }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="aldim_hitoko_product_category_view_tree" model="ir.ui.view">
+        <field name="name">aldim.hitoko.product.category.view.tree</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='display_name']" position="before">
+            <header>
+                <button name="hitoko_get_retrieve_product_category" type="object" string="Sync Hitoko"/>
+            </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>

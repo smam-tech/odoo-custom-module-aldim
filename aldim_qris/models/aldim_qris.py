@@ -65,7 +65,7 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
-            'api method' : 'get',
+            'api_method' : 'get',
             'params' : str(passparams),
             'response' : str(res)    
         }
@@ -98,7 +98,7 @@ class aldim_qris_model(models.Model):
         vals = {
             'api_provider' : 'QRIS',
             'api_prodivder_link' : url,
-            'api method' : 'get',
+            'api_method' : 'get',
             'params' : str(passparams),
             'response' : str(res)    
         }
