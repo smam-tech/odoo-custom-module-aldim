@@ -4,7 +4,7 @@ import requests
 
 class aldim_jubelio_company_ext_api_model(models.Model):
     _inherit='res.company'
-    _description='Company extend for API key and QRIS mID'
+    _description='Company extend for Api Token Jubelio'
 
     email_jubelio = fields.Char(
         string='Email Jubelio',
@@ -13,7 +13,7 @@ class aldim_jubelio_company_ext_api_model(models.Model):
 
     password_jubelio = fields.Char(
         string='Password Jubelio',
-        help='Password untuk email yang terdaftar API Jubelio, Cek web QRIS untuk info lebih lanjut'
+        help='Password untuk email yang terdaftar API Jubelio, Cek web Jubelio untuk info lebih lanjut'
     )
 
     token_jubelio = fields.Char(
