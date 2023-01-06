@@ -102,7 +102,7 @@ class aldim_hitoko_product_category_model(models.Model):
             
 
 
-## PROBLEM SEARCH WRITE
+## PROBLEM_DONE SEARCH WRITE
     def do_fill_all_parent_product_category_hitoko(self,category):
         for cat in category:
             highest_parent = cat.parent_id_hitoko
@@ -127,7 +127,8 @@ class aldim_hitoko_product_category_model(models.Model):
             'size':9999999
         }
 
-        sign = self.env['res.company'].generate_signature_hitoko(self,reqparams)
+        recordcompany = self.company_id
+        sign = self.env['res.company'].generate_signature_hitoko(recordcompany,reqparams)
         passparams = {
             'client_id':self.company_id.client_id_hitoko,
             'sign': sign,

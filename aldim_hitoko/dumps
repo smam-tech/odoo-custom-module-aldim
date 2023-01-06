@@ -1,0 +1,15 @@
+import requests
+
+url = 'https://api.imgbb.com/1/upload'
+imgurl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png'
+imgres = requests.get(imgurl, stream = True)
+imgres = imgres.json()
+reqparams = {
+    'key':'bf9a5102bb578823304ea7796e7241f4',
+    'image':'template.image_1920'
+}
+print(imgres)
+print(type(imgres))
+# response = requests.post(url, params=reqparams)
+# res = response.json()
+# print(res)

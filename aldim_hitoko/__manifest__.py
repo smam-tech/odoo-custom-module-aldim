@@ -1,6 +1,6 @@
 {
     'name' : 'Hitoko Omnichannel',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'API/QRIS',
     'depends': ['base','product','aldim_api_history'],
     'description': """

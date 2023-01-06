@@ -6,6 +6,12 @@ class aldim_hitoko_company_ext_api_model(models.Model):
     _inherit='res.company'
     _description='Company extend for API token with Hitoko'
 
+    key_imgbb = fields.Char(
+        string='API Key imgbb',
+        help='API Key for imgbb, get your API key at https://api.imgbb.com/',
+        default=''
+    )
+
     client_id_hitoko = fields.Char(
         string='Client ID HiToko',
         help='Client ID yang terdaftar API Hitoko, Cek web Hitoko untuk info lebih lanjut'
@@ -46,9 +52,9 @@ class aldim_hitoko_company_ext_api_model(models.Model):
         help='Expire time for last requested token in hitoko'
     )
 
-    def generate_signature_hitoko(self,requestparamsdict):
+    def generate_signature_hitoko(recordcompany, requestparamsdict):
         requestparamsstr = json.dumps(requestparamsdict)
-        companyres = self.company_id
+        companyres = recordcompany
         key = companyres.client_secret_hitoko
         data = companyres.client_id_hitoko + companyres.access_token_hitoko + str(requestparamsstr)
         return key+data

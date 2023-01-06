@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='currency_id']" position="after">
+            <field name="key_imgbb"/>
             <field name="client_id_hitoko"/>
             <field name="client_secret_hitoko"/>
             <field name="expire_token_hitoko"/>
