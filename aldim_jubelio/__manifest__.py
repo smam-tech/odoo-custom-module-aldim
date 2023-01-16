@@ -1,7 +1,9 @@
 {
-    'name' : 'Jubelio Omnichannel',
+    'name' : 'Jubelio',
+    'summary' : 'Jubelio Omnichannel Integration',
     'version': '1.0',
-    'category': 'API/QRIS',
+    'author': 'Aldi Mulyawan [aldismartkid@gmail.com]',
+    'category': 'API/Integration',
     'depends': ['base','product','aldim_api_history'],
     'description': """
 Modul Jubelio Omnichannel.

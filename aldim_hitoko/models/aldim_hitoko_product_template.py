@@ -3,6 +3,7 @@ import requests
 from odoo.exceptions import UserError
 #raise UserError('bruh')
 import base64
+from urllib.request import urlopen
 
 class aldim_hitoko_product_template_model(models.Model):
     _inherit='product.template'
@@ -15,10 +16,11 @@ class aldim_hitoko_product_template_model(models.Model):
     )
 
     image_link = fields.Char(
-        string="Image Link",
+        string="Public Image Link",
         readonly='True',
         help='Image link uploaded to https://api.imgbb.com/',
-        compute= '_compute_image_link'
+        # compute= '_compute_image_link',
+        default= ''
     )
 
     weight_hitoko = fields.Integer(
@@ -45,36 +47,31 @@ class aldim_hitoko_product_template_model(models.Model):
         default=0
     )
 
-    @api.depends('image_1920','company_id.key_imgbb')
-    def _compute_image_link(self):
+    # @api.depends('image_1920')
+    # def _compute_image_link(self):
+    #     for template in self:
+    #         aldim_hitoko_product_template_model.hitoko_get_image_link(template)
+
+
+    def hitoko_get_image_link(self,singlerecord=""):
+        if singlerecord != "":
+            imglink = self.env['res.config.settings'].convert_image_to_link(self,singlerecord.image_1920)
+            singlerecord.image_link = imglink
+            return "Done"
         for template in self:
-            url = 'https://api.imgbb.com/1/upload'
-
-            raise UserError(base64.b64encode(template.image_1920))
-
-            reqparams = {
-                'key':template.env.company.key_imgbb,
-                'image':base64.b64encode(template.image_1920)
-            }
-            response = requests.post(url, params=reqparams)
-            res = response.json()
-            vals = {
-                'api_provider' : 'ImgBB',
-                'api_prodivder_link' : url,
-                'api_method' : 'post',
-                'params' : str(reqparams),
-                'response' : str(res)   
-            }
-            self.env['aldim.api.history'].create(vals)
-            if 'data' in res.keys():
-                template.image_link = res['data']['url']
-            else:
-                template.image_link = 'ERROR CHECK API HISTORY'
-            return 'ok'
-
-
-    def convert_product_image_to_link(image):
-        return image
+            # Format for ir_attachment
+            # url = template.get_base_url() + "/web/image/product.template/%s/image_1920" % template.id
+            # imgbase64 = base64.b64encode(urlopen(url).read())
+            # attachments = self.env['ir.attachment'].sudo().search(
+            #     [('res_model', '=', 'product.template'),
+            #     ('res_field', '=', 'image_1920'),
+            #     ('res_id', '=', template.id)], limit=1)
+            # printend = '---store_fname = ' + str(attachments.store_fname) + '---datas = ' + str(attachments.datas) + "---db_datas = " + str(attachments.db_datas) + "---raw = " + str(attachments.raw) + "---file_size = " + str(attachments.file_size)
+            # raise UserError(printend)
+            # imglink = self.env['res.config.settings'].convert_image_to_link(self,attachments.datas)
+            imglink = self.env['res.config.settings'].convert_image_to_link(self,template.image_1920)
+            template.image_link = imglink
+            return "done"
 
 
     def hitoko_post_create_product(self):
@@ -114,7 +111,8 @@ class aldim_hitoko_product_template_model(models.Model):
             'api_prodivder_link' : url,
             'api_method' : 'get',
             'params' : 'Params Sent: \n'+str(passparams)+'\n Params Source : \n'+str(reqparams),
-            'response' : str(res)   
+            'response' : str(res),
+            'description' : 'export product at odoo to hitoko with name ' + self.name 
         }
 
         self.env['aldim.api.history'].create(vals)

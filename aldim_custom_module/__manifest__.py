@@ -1,7 +1,9 @@
 {
     'name' : 'AldiM Custom Module',
+    'summary' : 'AldiM Custom Module',
     'version': '1.2',
-    'category': 'AldiM/AldiM',
+    'author': 'Aldi Mulyawan [aldismartkid@gmail.com]',
+    'category': 'AldiM/Training',
     'summary': 'Modul Custom AldiM',
     'depends': ['base','sale'],
     'description': """

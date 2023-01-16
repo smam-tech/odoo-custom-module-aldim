@@ -13,10 +13,15 @@
           </p>
         </field>
     </record>
-    
-    <menuitem id="aldim_api_history"
+
+    <menuitem id="aldim_api_root" name="API Integration">
+        <menuitem id="aldim_api_history_parent" name="API History">
+            <menuitem id="aldim_api_history" action="aldim_api_history_views"/>
+        </menuitem>
+    </menuitem>  
+    <!-- <menuitem id="aldim_api_history"
             name="API History"
             parent="sale.sale_order_menu"
             action="aldim_api_history_views"
-            sequence="3"/>
+            sequence="3"/> -->
 </odoo>

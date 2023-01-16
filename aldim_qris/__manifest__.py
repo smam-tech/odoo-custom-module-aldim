@@ -1,7 +1,9 @@
 {
-    'name' : 'QRIS payment',
+    'name' : 'QRIS',
+    'summary' : 'QRIS Integration',
     'version': '1.0',
-    'category': 'API/QRIS',
+    'author': 'Aldi Mulyawan [aldismartkid@gmail.com]',
+    'category': 'API/Integration',
     'depends': ['base','sale','aldim_api_history'],
     'description': """
 Modul QRIS payment.

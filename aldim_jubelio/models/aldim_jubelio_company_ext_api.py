@@ -38,7 +38,8 @@ class aldim_jubelio_company_ext_api_model(models.Model):
             'api_prodivder_link' : url,
             'api_method' : 'post',
             'params' : str(passparams),
-            'response' : str(res)    
+            'response' : str(res),
+            'description' : 'Get Jubelio API Token'
         }
         self.env['aldim.api.history'].create(vals)
         return res

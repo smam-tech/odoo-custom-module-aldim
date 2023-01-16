@@ -1,7 +1,9 @@
 {
     'name' : 'Sales Extended AldiM',
+    'summary' : 'Sales Extended AldiM',
     'version': '1.2',
-    'category': 'Sales/Sales',
+    'author': 'Aldi Mulyawan [aldismartkid@gmail.com]',
+    'category': 'AldiM/Training',
     'depends': ['base','sale'],
     'description': """
 Modul Sales AldiM.

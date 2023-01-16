@@ -142,7 +142,8 @@ class aldim_hitoko_product_category_model(models.Model):
             'api_prodivder_link' : url,
             'api_method' : 'get',
             'params' : 'Params Sent: \n'+str(passparams)+'\n Params Source : \n'+str(reqparams),
-            'response' : str(res)   
+            'response' : str(res),
+            'description' : 'Retrieve Product Category from Hitoko to Odoo'
         }
 
         self.env['aldim.api.history'].create(vals)

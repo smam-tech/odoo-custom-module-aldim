@@ -1,0 +1,1 @@
+from . import aldim_imgbb_res_config_settings

@@ -67,7 +67,8 @@ class aldim_qris_model(models.Model):
             'api_prodivder_link' : url,
             'api_method' : 'get',
             'params' : str(passparams),
-            'response' : str(res)    
+            'response' : str(res),
+            'description' : 'Create QRIS Invoice'
         }
         self.env['aldim.api.history'].create(vals)
         return res
@@ -100,7 +101,8 @@ class aldim_qris_model(models.Model):
             'api_prodivder_link' : url,
             'api_method' : 'get',
             'params' : str(passparams),
-            'response' : str(res)    
+            'response' : str(res),
+            'description' : 'Check QRIS Invoice have been paid or not'
         }
         self.env['aldim.api.history'].create(vals)
         return res

@@ -31,6 +31,13 @@ class aldim_api_history(models.Model):
         help='Method to call the API'
     )
 
+    description = fields.Char(
+        string='Description',
+        readonly='True',
+        help='What the api call function',
+        default='DESCRIPTION EMPTY, PLS CONTACT aldismartkid@gmail.com and tell what happen.'
+    )
+
     params = fields.Text(
         string='Parameter',
         readonly='True',
