@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_open_label_layout']" position="before">
                 <button name="hitoko_get_image_link" type="object" string="Get Image Link"/>
+                <button name="hitoko_test_value" type="object" string="tes button"/>
             </xpath>
         </field>
     </record>

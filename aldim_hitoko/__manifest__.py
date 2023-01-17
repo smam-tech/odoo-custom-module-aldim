@@ -1,10 +1,10 @@
 {
     'name' : 'Hitoko',
     'summary' : 'Hitoko Omnichannel Integration',
-    'version': '0.1',
+    'version': '0.11',
     'author': 'Aldi Mulyawan [aldismartkid@gmail.com]',
     'category': 'API/Integration',
-    'depends': ['base','product','aldim_api_history','aldim_imgbb'],
+    'depends': ['base','product','stock','aldim_api_history','aldim_imgbb'],
     'description': """
 Modul Hitoko Omnichannel.
 ===============================================

@@ -73,6 +73,15 @@ class aldim_hitoko_product_template_model(models.Model):
             template.image_link = imglink
             return "done"
 
+    def hitoko_test_value(self):
+        variants = self.product_variant_ids
+        text = ""
+        for variant in variants:
+            stocks = variant.stock_quant_ids
+            for stock in stocks:
+                text = text + "product name = " + str(variant.name) + "Product warehouse = " + str(variant.warehouse_id)
+        raise UserError(text)
+
 
     def hitoko_post_create_product(self):
         url = 'https://www.hitoko.co.id/erp/api/v1/product/create'
