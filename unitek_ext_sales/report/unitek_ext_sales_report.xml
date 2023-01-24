@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="unitek_ext_sales_report"
+    inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-field='doc.partner_id']" position="before">
+        <span t-field="doc.end_user"/>
+        </xpath>
+    </template>
+</odoo>

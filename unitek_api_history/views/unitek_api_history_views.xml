@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>   
+    <!-- Configuration/Lead & Opportunities/Lost Reasons Menu -->
+    <record id="unitek_api_history_views" model="ir.actions.act_window">
+        <field name="name">API History</field>
+        <field name="res_model">unitek.api.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            API Response
+          </p><p>
+            No API Response Received yet
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="unitek_api_root" name="API Integration">
+        <menuitem id="unitek_api_history_parent" name="API History">
+            <menuitem id="unitek_api_history" action="unitek_api_history_views"/>
+        </menuitem>
+    </menuitem>  
+    <!-- <menuitem id="unitek_api_history"
+            name="API History"
+            parent="sale.sale_order_menu"
+            action="unitek_api_history_views"
+            sequence="3"/> -->
+</odoo>

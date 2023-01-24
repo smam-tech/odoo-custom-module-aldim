@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="unitek_hitoko_stock_warehouse_form_view" model="ir.ui.view">
+        <field name="name">unitek.hitoko.stock.warehouse.form.view</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="after">
+            <field name="sync_hitoko"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
