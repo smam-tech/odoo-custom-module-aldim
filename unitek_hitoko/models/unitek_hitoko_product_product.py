@@ -27,7 +27,7 @@ class unitek_hitoko_product_product_model(models.Model):
         for product in self:
             passparams = {
                 'sku_id' : product.sku_code_hitoko,
-                'sku_price' : product.lst_price
+                'sku_price' : int(round(product.lst_price))
             }
             sign = self.env['unitek.hitoko'].generate_signature_hitoko(product,passparams)
             sentparams = {

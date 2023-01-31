@@ -13,7 +13,8 @@
             <field name="qris_status_paid_by_platform"/>
             </xpath>
             <xpath expr="//button[@name='action_register_payment']" position="after">
-                <button name="tes_convert_img" type="object" string="tes_conver_image"/>
+                <button name="qris_create_invoice" type="object" string="Create QRIS Payment"/>
+                <button name="qris_api_get_check_invoice" type="object" string="Check QRIS Payment"/>
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
                 <field name="qris_image" widget="image" class="oe_avatar"/>

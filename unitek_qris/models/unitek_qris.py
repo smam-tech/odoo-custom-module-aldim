@@ -94,7 +94,7 @@ class unitek_qris_model(models.Model):
             'apikey': self.env.company.qris_api_key,
             'mID':self.env.company.qris_mid,
             'cliTrxNumber':self.name,
-            'cliTrxAmount':self.amount_total
+            'cliTrxAmount': int(round(self.amount_residual))
         }
         res = unitek_qris_model.qris_api_get_create_invoice(self,passparamsvar)
         if res['status']=='success':
@@ -129,7 +129,7 @@ class unitek_qris_model(models.Model):
             'apikey': self.env.company.qris_api_key,
             'mID':self.env.company.qris_mid,
             'invid':self.qris_invoice_id,
-            'trxvalue':self.amount_total,
+            'trxvalue':int(round(self.amount_residual)),
             'trxdate':self.qris_invoice_request_date[:10]
         }
         res = unitek_qris_model.qris_api_get_check_invoice(self,passparamsvar)
