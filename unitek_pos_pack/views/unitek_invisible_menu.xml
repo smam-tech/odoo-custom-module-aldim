@@ -9,4 +9,10 @@
     <record model="ir.ui.menu" id="stock.menu_procurement_compute">
 	    <field name="groups_id" eval="[(6,0,[ref('unitek_pos_pack.group_make_invisible')])]"/>
 	</record>
+	<record model="ir.ui.menu" id="pos_orders_all.menu_gift_coupon">
+	    <field name="groups_id" eval="[(6,0,[ref('unitek_pos_pack.group_make_invisible')])]"/>
+	</record>
+	<record model="ir.ui.menu" id="pos_all_in_one.menu_pos_loyalty_id">
+	    <field name="groups_id" eval="[(6,0,[ref('unitek_pos_pack.group_make_invisible')])]"/>
+	</record>
 </odoo>
