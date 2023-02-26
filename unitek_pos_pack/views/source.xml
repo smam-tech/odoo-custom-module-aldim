@@ -1,0 +1,7 @@
+                <xpath expr="//header/button[@name='%(action_product_replenish)d']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+
+                <xpath expr="//field[@name='taxes_id']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
