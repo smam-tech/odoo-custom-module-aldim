@@ -16,7 +16,7 @@
 
     <menuitem id="unitek_api_root" name="API Integration">
         <menuitem id="unitek_api_history_parent" name="API History">
-            <menuitem id="unitek_api_history" action="unitek_api_history_views"/>
+            <menuitem id="unitek_api_history" name="API Call History" action="unitek_api_history_views"/>
         </menuitem>
     </menuitem>  
     <!-- <menuitem id="unitek_api_history"

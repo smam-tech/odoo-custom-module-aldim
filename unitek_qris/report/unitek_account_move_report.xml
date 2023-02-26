@@ -3,8 +3,10 @@
     <template id="report_invoice_with_payments_inherit_qris" inherit_id="account.report_invoice_document">
         <xpath expr="//p[@name='payment_communication']" position="after">
             <div id="qris_image" class="row" t-if="print_with_payments" name="qris_image">
-                <strong>QRIS Payments:</strong>
-                <img t-att-src="image_data_uri(o.qris_image)" class="img-responsive" style="max-height:100px;max-width:100px;"/>
+                <t t-if="o.qris_image">
+                    <strong>QRIS Payments:</strong>
+                    <img t-att-src="image_data_uri(o.qris_image)" class="img-responsive" style="max-height:100px;max-width:100px;"/>
+                </t>
             </div>
         </xpath>
     </template>

@@ -14,11 +14,11 @@
         </field>
     </record>
 
-    <menuitem id="unitek_api_root" name="API Integration">
-        <menuitem id="unitek_api_history_parent" name="API History">
-            <menuitem id="unitek_midtrans_history_views" action="unitek_midtrans_views"/>
-        </menuitem>
-    </menuitem>  
+    <menuitem id="unitek_midtrans_views_id"
+            name="Midtrans History"
+            parent="unitek_api_history.unitek_api_history_parent"
+            action="unitek_midtrans_views"/>
+            
     <!-- <menuitem id="unitek_api_history"
             name="API History"
             parent="sale.sale_order_menu"

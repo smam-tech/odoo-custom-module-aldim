@@ -1,0 +1,67 @@
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="unitek_midtrans_account_move_form" model="ir.ui.view">
+        <field name="name">unitek.midtrans.account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_reference']" position="after">
+            <field name="midtrans_id"/>
+            <field name="midtrans_redirect_url"/>
+            </xpath>
+            <xpath expr="//button[@name='action_register_payment']" position="after">
+                <button name="create_midtrans_transaction" type="object" string="Create Midtrans Invoice"/>
+            </xpath>
+        </field>
+    </record>
+    <data name="Invoice Portal Template" inherit_id="account.portal_invoice_page" primary="True">
+        <xpath expr="//div[hasclass('btn-group  flex-grow-1 mr-1 mb-1')]" position="after">
+            <t t-if="invoice.midtrans_redirect_url">
+                <div class="btn-group flex-grow-1 mb-1">
+                    <a type="button" class="btn btn-primary" t-att-href="invoice.midtrans_redirect_url" target="_blank">Pay with Midtrans</a>
+                </div>
+            </t>
+        </xpath>
+    </data>
+</odoo> -->
+<odoo>
+    <record id="unitek_midtrans_account_move_form" model="ir.ui.view">
+        <field name="name">unitek.midtrans.account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_reference']" position="after">
+            <field name="midtrans_id"/>
+            <!-- <field name="midtrans_redirect_url"/> -->
+            </xpath>
+            <xpath expr="//button[@name='action_register_payment']" position="after">
+                <button name="create_midtrans_transaction" type="object" string="Create Midtrans Invoice"/>
+                <button name="check_midtrans_transaction_paid" type="object" string="Check Midtrans Invoice"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="unitek_midtrans_account_move_template" model="ir.ui.view">
+        <field name="name">unitek.midtrans.account.move.template</field>
+        <field name="inherit_id" ref="account.portal_invoice_page"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='o_download_pdf btn-toolbar flex-sm-nowrap']" position="after">
+                <t t-if="invoice.midtrans_redirect_url">
+                    <div class="btn-group flex-grow-1 mb-1">
+                        <a type="button" class="btn btn-primary" t-att-href="invoice.midtrans_redirect_url" target="_blank">Pay with Midtrans</a>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="btn-group flex-grow-1 mb-1">
+                        <button t-name="generate_midtrans_invoice" type="button" class="btn btn-primary" t-call="invoice.create_midtrans_transaction">Generate Midtrans Payment</button>
+                    </div>
+                </t>
+                <!-- <t t-if="invoice.midtrans_redirect_url"> -->
+                    <!-- <div class="btn-group flex-grow-1 mb-1"> -->
+                        <!-- <a type="button" class="btn btn-primary" t-att-href="invoice.midtrans_redirect_url" target="_blank" t-on-click="invoice.create_redirect_midtrans_transaction">Pay with Midtrans</a> -->
+                        <!-- <button name="create_redirect_midtrans_transaction" string="Pay with Midtrans" type="action" class="btn btn-primary"/>
+                    </div> -->
+                <!-- </t> -->
+            </xpath>
+        </field>
+    </record>
+</odoo>

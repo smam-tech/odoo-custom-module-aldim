@@ -12,11 +12,14 @@ Modul QRIS payment.
 Modul QRIS that extends payment in odoo so can print qris.
     """,
     'data': [
-        'views/unitek_qris_view.xml',
+        'security/ir.model.access.csv',
+        'views/unitek_account_move_view.xml',
         'views/unitek_company_ext_api_view.xml',
-        'report/unitek_qris_report.xml'
+        'views/unitek_qris_view.xml',
+        'report/unitek_account_move_report.xml'
     ],
     'installable': True,
+    'application': True,
     'auto_install': False,
     'license': 'LGPL-3',
 }

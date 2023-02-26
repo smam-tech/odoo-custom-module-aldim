@@ -1,24 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="unitek_qris_view_move_form" model="ir.ui.view">
-        <field name="name">unitek.qris.view.move.form</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_move_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='payment_reference']" position="after">
-            <field name="qris_image_string"/>
-            <field name="qris_invoice_id"/>
-            <field name="qris_status_paid"/>
-            <field name="qris_status_paid_by_customer"/>
-            <field name="qris_status_paid_by_platform"/>
-            </xpath>
-            <xpath expr="//button[@name='action_register_payment']" position="after">
-                <button name="qris_create_invoice" type="object" string="Create QRIS Payment"/>
-                <button name="qris_api_get_check_invoice" type="object" string="Check QRIS Payment"/>
-            </xpath>
-            <xpath expr="//field[@name='name']" position="after">
-                <field name="qris_image" widget="image" class="oe_avatar"/>
-            </xpath>
+<?xml version="1.0"?>
+<odoo>   
+    <!-- Configuration/Lead & Opportunities/Lost Reasons Menu -->
+    <record id="unitek_qris_views" model="ir.actions.act_window">
+        <field name="name">QRIS History</field>
+        <field name="res_model">unitek.qris</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            QRIS History
+          </p><p>
+            No QRIS History Created yet
+          </p>
         </field>
     </record>
+
+    <menuitem id="unitek_qris_views_id"
+            name="QRIS History"
+            parent="unitek_api_history.unitek_api_history_parent"
+            action="unitek_qris_views"/>
+            
+    <!-- <menuitem id="unitek_api_history"
+            name="API History"
+            parent="sale.sale_order_menu"
+            action="unitek_api_history_views"
+            sequence="3"/> -->
 </odoo>
