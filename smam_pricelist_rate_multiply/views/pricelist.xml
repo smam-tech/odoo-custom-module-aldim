@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="smam_pricelist_rate" model="ir.ui.view">
+        <field name="name">smam.pricelist.rate</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <label for="price_discount" position="before">
+                <field name="smam_rate" string="New Price Rate" attrs="{'invisible':[('compute_price', '!=', 'formula')]}"/>
+            </label>
+        </field>
+    </record>
+</odoo>
