@@ -11,3 +11,7 @@
         </field>
     </record>
 </odoo>
+<!-- 
+<xpath expr="//field[@name='price_surcharge']" position="after">
+            <field name="smam_rate" string="New Price Rate"/>
+            </xpath> -->
